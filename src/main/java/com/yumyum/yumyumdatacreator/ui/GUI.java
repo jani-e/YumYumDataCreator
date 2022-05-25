@@ -21,30 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 /**
  *
  * @author Jani Eriksson <https://github.com/jani-e>
  */
-
 package com.yumyum.yumyumdatacreator.ui;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 
 public class GUI extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
-        Label hello = new Label("Hello World!");
-        Scene scene = new Scene(new StackPane(hello), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage stage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GUI.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(getClass().getResource("/css/GUI.css").toExternalForm());
+            stage.setTitle("YumYumDataCreator");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
-    
+
     public static void main(String[] args) {
         launch();
     }
