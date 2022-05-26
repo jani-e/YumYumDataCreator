@@ -21,49 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.yumyum.yumyumdatacreator.domain;
-
 /**
  *
  * @author Jani Eriksson <https://github.com/jani-e>
  */
-class Ingredient {
-    private String name;
-    private double weight;
-    private String prefix; //kg dl
+package yumyumdatacreator.ui;
 
-    public Ingredient(String name, double weight, String prefix) {
-        this.name = name;
-        this.weight = weight;
-        this.prefix = prefix;
-    }
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
-    public String getName() {
-        return this.name;
-    }
+public class GUIController {
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    @FXML
+    private Button submit;
 
-    public double getWeight() {
-        return this.weight;
+    @FXML
+    private TextField testField;
+
+    @FXML
+    void submit(ActionEvent event) {
+        System.out.println(testField.getText());
     }
 
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public String getPrefix() {
-        return this.prefix;
-    }
-
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-    
-    @Override
-    public String toString() {
-        return "Ingredient{" + "name=" + name + ", weight=" + weight + ", prefix=" + prefix + '}';
-    }
 }

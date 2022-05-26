@@ -25,24 +25,33 @@
  *
  * @author Jani Eriksson <https://github.com/jani-e>
  */
-package com.yumyum.yumyumdatacreator.ui;
+package yumyumdatacreator.ui;
 
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import java.io.IOException;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 
-public class GUIController {
+public class GUI extends Application {
 
-    @FXML
-    private Button submit;
-
-    @FXML
-    private TextField testField;
-
-    @FXML
-    void submit(ActionEvent event) {
-        System.out.println(testField.getText());
+    @Override
+    public void start(Stage stage) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GUI.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            //scene.getStylesheets().add(getClass().getResource("/css/GUI.css").toExternalForm());
+            stage.setTitle("YumYumDataCreator");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 
+    public static void main(String[] args) {
+        launch();
+    }
 }

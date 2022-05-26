@@ -22,42 +22,15 @@
  * THE SOFTWARE.
  */
 
-package com.yumyum.yumyumdatacreator.domain;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
  *
  * @author Jani Eriksson <https://github.com/jani-e>
  */
-public class IngredientTest {
-    
-    private Ingredient ingredient;
-    
-    @BeforeAll
-    public static void setUpClass() {
-    }
-    
-    @AfterAll
-    public static void tearDownClass() {
-    }
-    
-    @BeforeEach
-    public void setUp() {
-        this.ingredient = new Ingredient("Milk", 5, "dl");
-    }
-    
-    @AfterEach
-    public void tearDown() {
-    }
-    
-    @Test
-    public void firstTest() {
-        assertEquals(5, this.ingredient.getWeight());
+
+package yumyumdatacreator.ui;
+
+public class Main {
+    public static void main(String[] args) {
+        GUI.main(args);
     }
 }

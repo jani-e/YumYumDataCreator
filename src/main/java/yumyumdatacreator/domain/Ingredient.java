@@ -21,37 +21,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package yumyumdatacreator.domain;
+
 /**
  *
  * @author Jani Eriksson <https://github.com/jani-e>
  */
-package com.yumyum.yumyumdatacreator.ui;
+class Ingredient {
+    private String name;
+    private double weight;
+    private String prefix; //kg dl
 
-import java.io.IOException;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-
-public class GUI extends Application {
-
-    @Override
-    public void start(Stage stage) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GUI.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            //scene.getStylesheets().add(getClass().getResource("/css/GUI.css").toExternalForm());
-            stage.setTitle("YumYumDataCreator");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+    public Ingredient(String name, double weight, String prefix) {
+        this.name = name;
+        this.weight = weight;
+        this.prefix = prefix;
     }
 
-    public static void main(String[] args) {
-        launch();
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getWeight() {
+        return this.weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public String getPrefix() {
+        return this.prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
+    }
+    
+    @Override
+    public String toString() {
+        return "Ingredient{" + "name=" + name + ", weight=" + weight + ", prefix=" + prefix + '}';
     }
 }

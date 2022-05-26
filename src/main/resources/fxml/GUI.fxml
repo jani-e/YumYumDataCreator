@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yumyum.yumyumdatacreator.ui.GUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yumyumdatacreator.ui.GUIController">
    <children>
       <Text layoutX="268.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hello World" />
       <TextField fx:id="testField" layoutX="88.0" layoutY="255.0" promptText="Test field for submit" />

@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.yumyum.yumyumdatacreator.domain;
+package yumyumdatacreator.domain;
 
 import java.util.List;
 
