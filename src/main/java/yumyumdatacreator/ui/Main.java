@@ -31,6 +31,6 @@ package yumyumdatacreator.ui;
 
 public class Main {
     public static void main(String[] args) {
-        GUI.main(args);
+        GUI.mainStart(args);
     }
 }
