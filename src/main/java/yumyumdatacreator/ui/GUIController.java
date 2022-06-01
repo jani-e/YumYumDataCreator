@@ -27,22 +27,45 @@
  */
 package yumyumdatacreator.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import yumyumdatacreator.domain.Recipe;
+import yumyumdatacreator.domain.RecipeHandler;
 
 public class GUIController {
-
+    
+    private RecipeHandler recipeHandler;
+    
     @FXML
-    private Button submit;
-
+    private ListView recipeList;
+    
+    public GUIController() {  
+    }
+    
     @FXML
-    private TextField testField;
-
-    @FXML
-    void submit(ActionEvent event) {
-        System.out.println(testField.getText());
+    private void initialize() {
+        recipeHandler = new RecipeHandler();
+        populateRecipeList();
+    }
+    
+    public void populateRecipeList() {        
+        for (Recipe recipe : this.recipeHandler.getRecipes()) {
+            recipeList.getItems().add(recipe.getName());
+        }
+    }
+    
+    public void loadRecipeDetails(MouseEvent event) {
+        
+        System.out.println(recipeList.getSelectionModel().getSelectedItem()); //returns object name of ListView recipeList, not actual recipe object
     }
 
 }
