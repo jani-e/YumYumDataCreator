@@ -23,37 +23,26 @@
  */
 package yumyumdatacreator.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Jani Eriksson <https://github.com/jani-e>
  */
-public class Lunch implements Meal {
-    private String title;
-    private List ingredients;
+public class Recipe {
+    private String name;
+    private String mealType;
     private String imageURL;
-    
-    public Lunch(String title, List ingredients, String imageURL) {
-        this.title = title;
-        this.ingredients = new ArrayList<Ingredient>();
+    private String instructions;
+    private List<Ingredient> ingredients;
+
+    public Recipe(String name, String mealType, String imageURL, String instructions, List<Ingredient> ingredients) {
+        this.name = name;
+        this.mealType = mealType;
         this.imageURL = imageURL;
+        this.instructions = instructions;
+        this.ingredients = ingredients;
     }
-
-    @Override
-    public String getTitle() {
-        return this.title;
-    }
-
-    @Override
-    public List getIngredients() {
-        return this.ingredients;
-    }
-
-    @Override
-    public String getImageURL() {
-        return this.imageURL;
-    }
+    
     
 }

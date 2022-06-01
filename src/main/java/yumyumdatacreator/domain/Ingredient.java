@@ -29,12 +29,12 @@ package yumyumdatacreator.domain;
  */
 class Ingredient {
     private String name;
-    private double weight;
+    private double quantity;
     private String prefix; //kg dl
 
-    public Ingredient(String name, double weight, String prefix) {
+    public Ingredient(String name, double quantity, String prefix) {
         this.name = name;
-        this.weight = weight;
+        this.quantity = quantity;
         this.prefix = prefix;
     }
 
@@ -45,13 +45,13 @@ class Ingredient {
     public void setName(String name) {
         this.name = name;
     }
-
-    public double getWeight() {
-        return this.weight;
+    
+    public double getQuantity() {
+        return this.quantity;
     }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
+    
+    public void setQuantity(double quantity) {
+        this.quantity = quantity;
     }
 
     public String getPrefix() {
@@ -61,9 +61,11 @@ class Ingredient {
     public void setPrefix(String prefix) {
         this.prefix = prefix;
     }
-    
+
     @Override
     public String toString() {
-        return "Ingredient{" + "name=" + name + ", weight=" + weight + ", prefix=" + prefix + '}';
+        return "Ingredient{" + "name=" + name + ", quantity=" + quantity + ", prefix=" + prefix + '}';
     }
+    
+    
 }
