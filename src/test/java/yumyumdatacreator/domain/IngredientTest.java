@@ -50,7 +50,7 @@ public class IngredientTest {
     
     @BeforeEach
     public void setUp() {
-        this.ingredient = new Ingredient("Milk", 5, "dl");
+        this.ingredient = new Ingredient("Milk", 2.5, "dl");
     }
     
     @AfterEach
@@ -58,7 +58,17 @@ public class IngredientTest {
     }
     
     @Test
-    public void firstTest() {
-        assertEquals(5, this.ingredient.getWeight());
+    public void correctName() {
+        assertEquals("Milk", this.ingredient.getName());
+    }
+    
+    @Test
+    public void correctQuantity() {
+        assertEquals(2.5, this.ingredient.getQuantity());
+    }
+    
+    @Test
+    public void correctPrefix() {
+        assertEquals("dl", this.ingredient.getPrefix());
     }
 }
