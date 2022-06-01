@@ -23,33 +23,23 @@
  */
 package yumyumdatacreator.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
  * @author Jani Eriksson <https://github.com/jani-e>
  */
-public class Recipe {
-    private String name;
-    private String mealType;
-    private String imageURL;
-    private String instructions;
-    private List<Ingredient> ingredients;
-
-    public Recipe(String name, String mealType, String imageURL, String instructions) {
-        this.name = name;
-        this.mealType = mealType;
-        this.imageURL = imageURL;
-        this.instructions = instructions;
+public class RecipeHandler {
+    private List<Recipe> recipes;
+    
+    public RecipeHandler() {
+        recipes = new ArrayList<>();
+        recipes.add(new Recipe("Name", "lunch", "url", "instructions"));
+        recipes.add(new Recipe("Another", "lunch", "url", "instructions"));
     }
     
-    public String getName() {
-        return this.name;
+    public List<Recipe> getRecipes() {
+        return this.recipes;
     }
-    
-    public String getMealType() {
-        return this.mealType;
-    }
-    
-    
 }
