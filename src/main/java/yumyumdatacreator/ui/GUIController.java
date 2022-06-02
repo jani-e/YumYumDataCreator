@@ -27,45 +27,77 @@
  */
 package yumyumdatacreator.ui;
 
-import java.util.ArrayList;
-import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import yumyumdatacreator.domain.Recipe;
 import yumyumdatacreator.domain.RecipeHandler;
 
 public class GUIController {
-    
+
     private RecipeHandler recipeHandler;
-    
+
     @FXML
     private ListView recipeList;
-    
-    public GUIController() {  
+
+    @FXML
+    private TextField recipeName;
+
+    @FXML
+    private TextField recipeType;
+
+    @FXML
+    private TextField recipeURL;
+
+    @FXML
+    private TextArea recipeInstructions;
+
+    @FXML
+    private Button saveRecipeButton;
+
+    public GUIController() {
     }
-    
+
     @FXML
     private void initialize() {
         recipeHandler = new RecipeHandler();
         populateRecipeList();
     }
-    
-    public void populateRecipeList() {        
+
+    public void populateRecipeList() {
+        recipeList.getItems().clear();
         for (Recipe recipe : this.recipeHandler.getRecipes()) {
             recipeList.getItems().add(recipe.getName());
         }
     }
-    
+
     public void loadRecipeDetails(MouseEvent event) {
-        
-        System.out.println(recipeList.getSelectionModel().getSelectedItem()); //returns object name of ListView recipeList, not actual recipe object
+        if (recipeList.getSelectionModel().getSelectedItem() == null) {
+            return;
+        }
+        String searchable = recipeList.getSelectionModel().getSelectedItem().toString();
+        Recipe foundRecipe = recipeHandler.searchRecipe(searchable);
+
+        recipeName.setText(foundRecipe.getName());
+        recipeType.setText(foundRecipe.getMealType());
+        recipeURL.setText(foundRecipe.getImageURL());
+        recipeInstructions.setText(foundRecipe.getInstructions());
+
+    }
+
+    public void saveRecipeDetails() {
+        String name = recipeName.getText();
+        String mealType = recipeType.getText();
+        String imageURL = recipeURL.getText();
+        String instructions = recipeInstructions.getText();
+
+        Recipe createdRecipe = new Recipe(name, mealType, imageURL, instructions);
+        this.recipeHandler.addRecipe(createdRecipe);
+
+        populateRecipeList();
     }
 
 }

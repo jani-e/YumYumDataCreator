@@ -34,12 +34,29 @@ public class RecipeHandler {
     private List<Recipe> recipes;
     
     public RecipeHandler() {
-        recipes = new ArrayList<>();
+        recipes = new ArrayList<>(); //temporary
         recipes.add(new Recipe("Name", "lunch", "url", "instructions"));
         recipes.add(new Recipe("Another", "lunch", "url", "instructions"));
     }
     
     public List<Recipe> getRecipes() {
         return this.recipes;
+    }
+    
+    public void addRecipe(Recipe addable) {
+        if (this.recipes.contains(addable)) {
+            System.out.println("recipe already exists"); //temporary message
+            return;
+        }
+        this.recipes.add(addable);
+    }
+    
+    public Recipe searchRecipe(String searchable) {
+        for (Recipe recipe : this.recipes) {
+            if (recipe.getName().contains(searchable)) {
+                return recipe;
+            }
+        }
+        return null;
     }
 }
