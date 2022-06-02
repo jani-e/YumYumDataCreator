@@ -1,24 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yumyumdatacreator.ui.GUIController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="yumyumdatacreator.ui.GUIController">
    <children>
-      <Text layoutX="264.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YumYumData" />
-      <ListView fx:id="recipeList" layoutX="40.0" layoutY="100.0" onMouseClicked="#loadRecipeDetails" prefHeight="200.0" prefWidth="200.0" />
-      <Text layoutX="40.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of Recipes" />
-      <Text layoutX="264.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details" />
-      <TextField fx:id="recipeName" layoutX="262.0" layoutY="129.0" />
-      <TextField fx:id="recipeType" layoutX="262.0" layoutY="175.0" />
-      <TextArea fx:id="recipeInstructions" layoutX="264.0" layoutY="278.0" prefHeight="100.0" prefWidth="305.0" />
-      <Text layoutX="262.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-      <Text layoutX="262.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal type" />
-      <TextField fx:id="recipeURL" layoutX="262.0" layoutY="227.0" />
-      <Text layoutX="262.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image URL" />
-      <Text layoutX="262.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructions" />
+      <Text layoutX="314.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YumYumData" />
+      <ListView fx:id="recipeList" layoutX="26.0" layoutY="100.0" onMouseClicked="#loadRecipeDetails" prefHeight="280.0" prefWidth="180.0" />
+      <Text layoutX="26.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of Recipes" />
+      <Text layoutX="235.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details" />
+      <Text layoutX="233.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
+      <TextField fx:id="recipeName" layoutX="233.0" layoutY="129.0" />
+      <Text layoutX="233.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meal type" />
+      <TextField fx:id="recipeType" layoutX="233.0" layoutY="175.0" />
+      <Text layoutX="233.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image URL" />
+      <TextField fx:id="recipeURL" layoutX="233.0" layoutY="227.0" prefHeight="25.0" prefWidth="305.0" />
+      <Text layoutX="233.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instructions" />
+      <TextArea fx:id="recipeInstructions" layoutX="235.0" layoutY="278.0" prefHeight="100.0" prefWidth="305.0" />
+      <Button fx:id="saveRecipeButton" layoutX="404.0" layoutY="129.0" mnemonicParsing="false" onAction="#saveRecipeDetails" prefHeight="25.0" prefWidth="133.0" text="Save Recipe" />
+      <Text layoutX="571.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ingredients" />
+      <TableView fx:id="ingredientsTable" layoutX="571.0" layoutY="119.0" prefHeight="258.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="ingredientsQuantity" prefWidth="45.0" text="#" />
+          <TableColumn fx:id="ingredientsPrefix" prefWidth="45.0" text="Prefix" />
+            <TableColumn fx:id="ingredientsName" prefWidth="110.0" text="Ingredient" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>
