@@ -33,10 +33,13 @@ import java.util.List;
 public class RecipeHandler {
     private List<Recipe> recipes;
     
-    public RecipeHandler() {
-        recipes = new ArrayList<>(); //temporary
-        recipes.add(new Recipe("Name", "lunch", "url", "instructions"));
-        recipes.add(new Recipe("Another", "lunch", "url", "instructions"));
+    public RecipeHandler() { //temporary dummy data
+        Ingredient dummyIngredient = new Ingredient("Milk", 5.2, "dl");
+        List<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(dummyIngredient);
+        recipes = new ArrayList<>();
+        recipes.add(new Recipe("Name", "lunch", "url", "instructions", ingredients));
+        recipes.add(new Recipe("Another", "lunch", "url", "instructions", ingredients));
     }
     
     public List<Recipe> getRecipes() {
@@ -58,5 +61,12 @@ public class RecipeHandler {
             }
         }
         return null;
+    }
+
+    public void addRecipe(String name, String mealType, String imageURL, String instructions) { //temp
+        Ingredient dummyIngredient = new Ingredient("Milk", 5.2, "dl");
+        List<Ingredient> ingredients = new ArrayList<>();
+        ingredients.add(dummyIngredient);
+        this.recipes.add(new Recipe(name, mealType, imageURL, instructions, ingredients));
     }
 }

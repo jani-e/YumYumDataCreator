@@ -37,11 +37,12 @@ public class Recipe {
     private String instructions;
     private List<Ingredient> ingredients;
 
-    public Recipe(String name, String mealType, String imageURL, String instructions) {
+    public Recipe(String name, String mealType, String imageURL, String instructions, List<Ingredient> ingredients) {
         this.name = name;
         this.mealType = mealType;
         this.imageURL = imageURL;
         this.instructions = instructions;
+        this.ingredients = ingredients;
     }
     
     public String getName() {
@@ -53,11 +54,15 @@ public class Recipe {
     }
 
     public String getImageURL() {
-        return imageURL;
+        return this.imageURL;
     }
 
     public String getInstructions() {
-        return instructions;
+        return this.instructions;
+    }
+    
+    public List getIngredients() {
+        return this.ingredients;
     }
 
     @Override
