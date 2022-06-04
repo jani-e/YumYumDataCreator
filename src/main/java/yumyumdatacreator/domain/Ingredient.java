@@ -60,12 +60,5 @@ class Ingredient {
 
     public void setPrefix(String prefix) {
         this.prefix = prefix;
-    }
-
-    @Override
-    public String toString() {
-        return "Ingredient{" + "name=" + name + ", quantity=" + quantity + ", prefix=" + prefix + '}';
-    }
-    
-    
+    }  
 }
