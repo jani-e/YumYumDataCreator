@@ -71,4 +71,22 @@ public class IngredientTest {
     public void correctPrefix() {
         assertEquals("dl", this.ingredient.getPrefix());
     }
+    
+    @Test
+    public void changeName() {
+        this.ingredient.setName("Strawberry");
+        assertEquals("Strawberry", this.ingredient.getName());
+    }
+    
+    @Test
+    public void changeQuantity() {
+        this.ingredient.setQuantity(5);
+        assertEquals(5.0, this.ingredient.getQuantity());
+    }
+    
+    @Test
+    public void changePrefix() {
+        this.ingredient.setPrefix("kg");
+        assertEquals("kg", this.ingredient.getPrefix());
+    }
 }
