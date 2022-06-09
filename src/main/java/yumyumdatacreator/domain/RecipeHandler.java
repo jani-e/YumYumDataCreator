@@ -46,6 +46,14 @@ public class RecipeHandler {
         return this.recipes;
     }
     
+    public List<String> getRecipesByName() {
+        List<String> recipeNames = new ArrayList<>();
+        for (Recipe recipe : this.recipes) {
+            recipeNames.add(recipe.getName());
+        }
+        return recipeNames;
+    }
+    
     public void addRecipe(Recipe addable) {
         if (this.recipes.contains(addable)) {
             System.out.println("recipe already exists"); //temporary message

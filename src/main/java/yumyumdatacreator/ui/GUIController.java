@@ -27,6 +27,8 @@
  */
 package yumyumdatacreator.ui;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
@@ -42,6 +44,8 @@ public class GUIController {
 
     @FXML
     private ListView recipeList;
+    
+    private ObservableList<String> recipeNames;
 
     @FXML
     private TextField recipeName;
@@ -69,9 +73,8 @@ public class GUIController {
 
     public void populateRecipeList() {
         recipeList.getItems().clear();
-        for (Recipe recipe : this.recipeHandler.getRecipes()) {
-            recipeList.getItems().add(recipe.getName());
-        }
+        recipeNames = FXCollections.observableArrayList(recipeHandler.getRecipesByName());
+        recipeList.setItems(recipeNames);
     }
 
     public void loadRecipeDetails(MouseEvent event) {
