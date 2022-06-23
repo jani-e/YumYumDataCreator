@@ -35,6 +35,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import yumyumdatacreator.dao.ConnectionManager;
+import yumyumdatacreator.dao.CredentialsLoader;
 import yumyumdatacreator.domain.Recipe;
 import yumyumdatacreator.domain.RecipeHandler;
 
@@ -63,6 +65,9 @@ public class GUIController {
     private Button saveRecipeButton;
 
     public GUIController() {
+        CredentialsLoader cl = new CredentialsLoader();
+        ConnectionManager cm = new ConnectionManager(cl.getIp(), cl.getUser(), cl.getPassword());
+        cm.getDatabaseConnection();
     }
 
     @FXML

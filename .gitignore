@@ -26,3 +26,7 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 /nbproject/
+
+
+## Other
+credentials.csv
