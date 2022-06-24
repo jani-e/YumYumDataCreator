@@ -97,10 +97,14 @@ public class GUIController {
         String imageURL = recipeURL.getText();
         String instructions = recipeInstructions.getText();
 
-        //Recipe createdRecipe = new Recipe(name, mealType, imageURL, instructions);
+        Recipe createdRecipe = new Recipe(name, mealType, imageURL, instructions, null);
         //this.recipeHandler.addRecipe(createdRecipe);
         
+        //old
         this.recipeHandler.addRecipe(name, mealType, imageURL, instructions); //temp until ingredients supported
+        
+        //new with database
+        this.recipeHandler.saveRecipe(createdRecipe);
 
         populateRecipeList();
     }

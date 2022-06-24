@@ -23,6 +23,10 @@
  */
 package yumyumdatacreator.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
  * @author Jani Eriksson <https://github.com/jani-e>
@@ -43,6 +47,19 @@ public class DatabaseHandler {
         } else {
             TableCreator tc = new TableCreator(cm.getDatabaseConnection());
             tc.createTables();
+        }
+    }
+
+    public void saveRecipe(String recipeName) {
+        String insert_SQL = "INSERT INTO recipe (name, type) VALUES (?, ?);";
+        try {
+            Connection conn = this.cm.getDatabaseConnection();
+            PreparedStatement st = conn.prepareStatement(insert_SQL);
+            st.setString(1, recipeName);
+            st.setInt(2, 1); //temp, type is mandatory (1 = lunch)
+            st.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

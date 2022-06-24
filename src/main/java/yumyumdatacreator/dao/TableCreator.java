@@ -56,7 +56,7 @@ public class TableCreator {
                 + "type INTEGER NOT NULL, "
                 + "imageurl VARCHAR(32), "
                 + "instructions VARCHAR(200), "
-                + "FOREIGN KEY (recipeid) REFERENCES type(typeid)"
+                + "FOREIGN KEY (type) REFERENCES type(typeid)"
                 + ");";
         
         String recipeIngredient_SQL = "CREATE TABLE IF NOT EXISTS recipe_ingredient ("

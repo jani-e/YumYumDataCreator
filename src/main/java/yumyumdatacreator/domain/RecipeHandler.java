@@ -67,6 +67,10 @@ public class RecipeHandler {
         this.recipes.add(addable);
     }
     
+    public void saveRecipe(Recipe savedRecipe) {
+        this.dh.saveRecipe(savedRecipe.getName());
+    }
+    
     public Recipe searchRecipe(String searchable) {
         for (Recipe recipe : this.recipes) {
             if (recipe.getName().contains(searchable)) {
