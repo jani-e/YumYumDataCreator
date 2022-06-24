@@ -23,32 +23,26 @@
  */
 package yumyumdatacreator.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 /**
  *
  * @author Jani Eriksson <https://github.com/jani-e>
  */
-public class ConnectionManager {
+public class DatabaseHandler {
 
-    private String url;
-    private String user;
-    private String password;
-    
-    public ConnectionManager(String ip, String user, String password) {
-        this.url = "jdbc:postgresql://" + ip + "/yumyum";
-        this.user = user;
-        this.password = password;
+    private CredentialsLoader cl;
+    private ConnectionManager cm;
+
+    public DatabaseHandler() {
+        this.cl = new CredentialsLoader();
+        this.cm = new ConnectionManager(cl.getIp(), cl.getUser(), cl.getPassword());
     }
 
-    public Connection getDatabaseConnection() {
-        try {
-            return DriverManager.getConnection(url, user, password);
-        } catch (SQLException ex) {
-            System.out.println("Connection Failed.");
+    public void createTables() {
+        if (cm.getDatabaseConnection() == null) {
+            System.out.println("Connection is null");
+        } else {
+            TableCreator tc = new TableCreator(cm.getDatabaseConnection());
+            tc.createTables();
         }
-        return null;
     }
 }

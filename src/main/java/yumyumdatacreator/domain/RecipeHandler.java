@@ -25,15 +25,20 @@ package yumyumdatacreator.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import yumyumdatacreator.dao.DatabaseHandler;
 
 /**
  *
  * @author Jani Eriksson <https://github.com/jani-e>
  */
 public class RecipeHandler {
+    private DatabaseHandler dh;
     private List<Recipe> recipes;
     
     public RecipeHandler() { //temporary dummy data
+        this.dh = new DatabaseHandler();
+        this.dh.createTables();
+        
         Ingredient dummyIngredient = new Ingredient("Milk", 5.2, "dl");
         List<Ingredient> ingredients = new ArrayList<>();
         ingredients.add(dummyIngredient);
