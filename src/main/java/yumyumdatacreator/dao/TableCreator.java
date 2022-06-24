@@ -45,16 +45,34 @@ public class TableCreator {
                 + "prefix VARCHAR(3)"
                 + ");";
         
-        String recipe_SQL = "";
-        String type_SQL = "";
-        String recipeIngredient_SQL = "";
+        String type_SQL = "CREATE TABLE IF NOT EXISTS type ("
+                + "typeid SERIAL PRIMARY KEY, "
+                + "mealtype VARCHAR(16) NOT NULL"
+                + ");";
+        
+        String recipe_SQL = "CREATE TABLE IF NOT EXISTS recipe ("
+                + "recipeid SERIAL PRIMARY KEY, "
+                + "name VARCHAR(32) NOT NULL, "
+                + "type INTEGER NOT NULL, "
+                + "imageurl VARCHAR(32), "
+                + "instructions VARCHAR(200), "
+                + "FOREIGN KEY (recipeid) REFERENCES type(typeid)"
+                + ");";
+        
+        String recipeIngredient_SQL = "CREATE TABLE IF NOT EXISTS recipe_ingredient ("
+                + "recipeid INTEGER NOT NULL, "
+                + "ingredientid INTEGER NOT NULL, "
+                + "quantity DOUBLE PRECISION NOT NULL, "
+                + "FOREIGN KEY (recipeid) REFERENCES recipe(recipeid), "
+                + "FOREIGN KEY (ingredientid) REFERENCES ingredient(ingredientid)"
+                + ");";
         
         try {
             Statement st = this.conn.createStatement();
             st.execute(ingredient_SQL);
-            //st.execute(recipe_SQL);
-            //st.execute(type_SQL);
-            //st.execute(recipeIngredient_SQL);
+            st.execute(type_SQL);
+            st.execute(recipe_SQL);
+            st.execute(recipeIngredient_SQL);
             st.close();
             this.conn.close();
         } catch (Exception e) {
