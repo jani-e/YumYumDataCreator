@@ -24,33 +24,42 @@
 package yumyumdatacreator.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  *
  * @author Jani Eriksson <https://github.com/jani-e>
  */
-public class ConnectionManager {
+public class TableCreator {
 
-    private String url;
-    private String user;
-    private String password;
-    
-    public ConnectionManager(String ip, String user, String password) {
-        this.url = "jdbc:postgresql://" + ip + "/yumyum";
-        this.user = user;
-        this.password = password;
+    private Connection conn;
+
+    public TableCreator(Connection conn) {
+        this.conn = conn;
     }
 
-    public Connection getDatabaseConnection() {
+    public void createTables() {
+        String ingredient_SQL = "CREATE TABLE IF NOT EXISTS ingredient ("
+                + "ingredientid SERIAL PRIMARY KEY, "
+                + "name VARCHAR(32) NOT NULL, "
+                + "prefix VARCHAR(3)"
+                + ");";
+        
+        String recipe_SQL = "";
+        String type_SQL = "";
+        String recipeIngredient_SQL = "";
+        
         try {
-            return DriverManager.getConnection(url, user, password);
-        } catch (SQLException ex) {
-            System.out.println("Connection Failed.");
+            Statement st = this.conn.createStatement();
+            st.execute(ingredient_SQL);
+            //st.execute(recipe_SQL);
+            //st.execute(type_SQL);
+            //st.execute(recipeIngredient_SQL);
+            st.close();
+            this.conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
-            System.out.println("Connection Established");
         }
-        return null;
     }
 }
