@@ -67,13 +67,14 @@ public class GUIController {
 
     @FXML
     private void initialize() {
-        recipeHandler = new RecipeHandler();
+        this.recipeHandler = new RecipeHandler();
         populateRecipeList();
     }
 
     public void populateRecipeList() {
+        this.recipeHandler.loadRecipes();
         recipeList.getItems().clear();
-        recipeNames = FXCollections.observableArrayList(recipeHandler.getRecipesByName());
+        recipeNames = FXCollections.observableArrayList(this.recipeHandler.getRecipesByName());
         recipeList.setItems(recipeNames);
     }
 
@@ -82,13 +83,12 @@ public class GUIController {
             return;
         }
         String searchable = recipeList.getSelectionModel().getSelectedItem().toString();
-        Recipe foundRecipe = recipeHandler.searchRecipe(searchable);
+        Recipe foundRecipe = this.recipeHandler.searchRecipe(searchable);
 
         recipeName.setText(foundRecipe.getName());
         recipeType.setText(foundRecipe.getMealType());
         recipeURL.setText(foundRecipe.getImageURL());
         recipeInstructions.setText(foundRecipe.getInstructions());
-
     }
 
     public void saveRecipeDetails() {
@@ -98,14 +98,8 @@ public class GUIController {
         String instructions = recipeInstructions.getText();
 
         Recipe createdRecipe = new Recipe(name, mealType, imageURL, instructions, null);
-        //this.recipeHandler.addRecipe(createdRecipe);
         
-        //old
-        this.recipeHandler.addRecipe(name, mealType, imageURL, instructions); //temp until ingredients supported
-        
-        //new with database
         this.recipeHandler.saveRecipe(createdRecipe);
-
         populateRecipeList();
     }
 

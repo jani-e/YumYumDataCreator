@@ -35,16 +35,9 @@ public class RecipeHandler {
     private DatabaseHandler dh;
     private List<Recipe> recipes;
     
-    public RecipeHandler() { //temporary dummy data
+    public RecipeHandler() {
         this.dh = new DatabaseHandler();
         this.dh.createTables();
-        
-        Ingredient dummyIngredient = new Ingredient("Milk", 5.2, "dl");
-        List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(dummyIngredient);
-        recipes = new ArrayList<>();
-        recipes.add(new Recipe("Name", "lunch", "url", "instructions", ingredients));
-        recipes.add(new Recipe("Another", "lunch", "url", "instructions", ingredients));
     }
     
     public List<Recipe> getRecipes() {
@@ -67,8 +60,12 @@ public class RecipeHandler {
         this.recipes.add(addable);
     }
     
-    public void saveRecipe(Recipe savedRecipe) {
-        this.dh.saveRecipe(savedRecipe.getName());
+    public void saveRecipe(Recipe recipe) {
+        this.dh.saveRecipe(recipe);
+    }
+    
+    public void loadRecipes() {
+        this.recipes = this.dh.loadRecipes();
     }
     
     public Recipe searchRecipe(String searchable) {
@@ -78,12 +75,5 @@ public class RecipeHandler {
             }
         }
         return null;
-    }
-
-    public void addRecipe(String name, String mealType, String imageURL, String instructions) { //temp
-        Ingredient dummyIngredient = new Ingredient("Milk", 5.2, "dl");
-        List<Ingredient> ingredients = new ArrayList<>();
-        ingredients.add(dummyIngredient);
-        this.recipes.add(new Recipe(name, mealType, imageURL, instructions, ingredients));
     }
 }

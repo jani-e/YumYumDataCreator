@@ -54,7 +54,7 @@ public class TableCreator {
                 + "recipeid SERIAL PRIMARY KEY, "
                 + "name VARCHAR(32) NOT NULL, "
                 + "type INTEGER NOT NULL, "
-                + "imageurl VARCHAR(32), "
+                + "imageurl VARCHAR(100), "
                 + "instructions VARCHAR(200), "
                 + "FOREIGN KEY (type) REFERENCES type(typeid)"
                 + ");";

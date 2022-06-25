@@ -25,7 +25,11 @@ package yumyumdatacreator.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import yumyumdatacreator.domain.Recipe;
 
 /**
  *
@@ -50,16 +54,45 @@ public class DatabaseHandler {
         }
     }
 
-    public void saveRecipe(String recipeName) {
-        String insert_SQL = "INSERT INTO recipe (name, type) VALUES (?, ?);";
+    public void saveRecipe(Recipe recipe) {
+        String insert_SQL = "INSERT INTO recipe (name, type, imageurl, instructions) VALUES (?, ?, ?, ?);"; //missing ingredients
         try {
             Connection conn = this.cm.getDatabaseConnection();
             PreparedStatement st = conn.prepareStatement(insert_SQL);
-            st.setString(1, recipeName);
+            st.setString(1, recipe.getName());
             st.setInt(2, 1); //temp, type is mandatory (1 = lunch)
+            st.setString(3, recipe.getImageURL());
+            st.setString(4, recipe.getInstructions());
             st.executeUpdate();
+            st.close();
+            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public List<Recipe> loadRecipes() {
+        List<Recipe> recipes = new ArrayList<>();
+        String query_SQL = "SELECT * FROM recipe;";
+        try {
+            Connection conn = this.cm.getDatabaseConnection();
+            PreparedStatement st = conn.prepareStatement(query_SQL);
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                String name = rs.getString("name");
+                //int type = rs.getInt("type"); //temp
+                String type = "lunch";
+                String imageurl = rs.getString("imageurl");
+                String instructions = rs.getString("instructions");
+                List ingredients = null; //temp
+                recipes.add(new Recipe(name, type, imageurl, instructions, ingredients));
+            }
+            rs.close();
+            st.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return recipes;
     }
 }
