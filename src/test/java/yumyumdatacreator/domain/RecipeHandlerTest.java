@@ -25,56 +25,54 @@ package yumyumdatacreator.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import yumyumdatacreator.dao.DatabaseHandler;
 
 /**
  *
  * @author Jani Eriksson <https://github.com/jani-e>
  */
-public class RecipeHandler {
-
-    private DatabaseHandler dh;
-    private List<Recipe> recipes;
-
-    public RecipeHandler(DatabaseHandler dh) {
-        this.dh = dh;
-        this.dh.createTables();
+public class RecipeHandlerTest {
+    
+    private RecipeHandler recipeHandler;
+    private DatabaseHandler databaseHandler;
+    private List<Recipe> dummyRecipes;
+    
+    public RecipeHandlerTest() {
+    }
+    
+    @BeforeAll
+    public static void setUpClass() {
+    }
+    
+    @AfterAll
+    public static void tearDownClass() {
+    }
+    
+    @BeforeEach
+    public void setUp() {
+        this.databaseHandler = mock(DatabaseHandler.class);
+        this.recipeHandler = new RecipeHandler(databaseHandler);
+        this.dummyRecipes = new ArrayList<>();
+        this.dummyRecipes.add(new Recipe("Soup", "Lunch", "www.food.com", "Cook it", null));
+        this.dummyRecipes.add(new Recipe("Crepes", "Dessert", "www.crepes.com", "Fry them", null));
+    }
+    
+    @AfterEach
+    public void tearDown() {
     }
 
-    public List<Recipe> getRecipes() {
-        return this.recipes;
-    }
-
-    public void loadRecipes() {
-        this.recipes = this.dh.loadRecipes();
-    }
-
-    public List<String> getRecipesByName() {
-        List<String> recipeNames = new ArrayList<>();
-        for (Recipe recipe : this.recipes) {
-            recipeNames.add(recipe.getName());
-        }
-        return recipeNames;
-    }
-
-    public void addRecipe(Recipe addable) {
-        if (this.recipes.contains(addable)) {
-            System.out.println("recipe already exists"); //temporary message
-            return;
-        }
-        this.recipes.add(addable);
-    }
-
-    public void saveRecipe(Recipe recipe) {
-        this.dh.saveRecipe(recipe);
-    }
-
-    public Recipe searchRecipe(String searchable) {
-        for (Recipe recipe : this.recipes) {
-            if (recipe.getName().contains(searchable)) {
-                return recipe;
-            }
-        }
-        return null;
+    @Test
+    public void recipesAreLoadedandReturned() {
+        when(this.databaseHandler.loadRecipes()).thenReturn(this.dummyRecipes);
+        this.recipeHandler.loadRecipes();
+        assertEquals(this.dummyRecipes, this.recipeHandler.getRecipes());
     }
 }

@@ -35,6 +35,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import yumyumdatacreator.dao.DatabaseHandler;
 import yumyumdatacreator.domain.Recipe;
 import yumyumdatacreator.domain.RecipeHandler;
 
@@ -67,7 +68,8 @@ public class GUIController {
 
     @FXML
     private void initialize() {
-        this.recipeHandler = new RecipeHandler();
+        DatabaseHandler dh = new DatabaseHandler();
+        this.recipeHandler = new RecipeHandler(dh);
         populateRecipeList();
     }
 
