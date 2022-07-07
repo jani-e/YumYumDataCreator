@@ -57,12 +57,13 @@ public class RecipeHandler {
         return recipeNames;
     }
 
-    public void addRecipe(Recipe addable) {
+    public boolean addRecipe(Recipe addable) { //Reduntant? Doesn't save to database
         if (this.recipes.contains(addable)) {
             System.out.println("recipe already exists"); //temporary message
-            return;
+            return false;
         }
         this.recipes.add(addable);
+        return true;
     }
 
     public void saveRecipe(Recipe recipe) {
