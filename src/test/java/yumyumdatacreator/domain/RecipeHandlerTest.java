@@ -31,7 +31,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import yumyumdatacreator.dao.DatabaseHandler;
 
@@ -63,6 +66,8 @@ public class RecipeHandlerTest {
         this.dummyRecipes = new ArrayList<>();
         this.dummyRecipes.add(new Recipe("Soup", "Lunch", "www.food.com", "Cook it", null));
         this.dummyRecipes.add(new Recipe("Crepes", "Dessert", "www.crepes.com", "Fry them", null));
+        when(this.databaseHandler.loadRecipes()).thenReturn(this.dummyRecipes);
+        this.recipeHandler.loadRecipes();
     }
     
     @AfterEach
@@ -70,9 +75,26 @@ public class RecipeHandlerTest {
     }
 
     @Test
-    public void recipesAreLoadedandReturned() {
-        when(this.databaseHandler.loadRecipes()).thenReturn(this.dummyRecipes);
-        this.recipeHandler.loadRecipes();
+    public void recipesAreReturned() {
         assertEquals(this.dummyRecipes, this.recipeHandler.getRecipes());
+    }
+    
+    @Test
+    public void recipeNamesAreReturned() {
+        List<String> testRecipeNames = new ArrayList<>();
+        testRecipeNames.add("Soup");
+        testRecipeNames.add("Crepes");
+        List<String> recipeNames = this.recipeHandler.getRecipesByName();
+        assertEquals(testRecipeNames, recipeNames);
+    }
+    
+    @Test
+    public void recipeCanBeAdded() {
+        assertTrue(this.recipeHandler.addRecipe(new Recipe("NewRecipe", "Dinner", "www.dinner.com", "Cena", null)));
+    }
+    
+    @Test
+    public void existingRecipeCantBeAdded() {
+        assertFalse(this.recipeHandler.addRecipe(new Recipe("Soup", "Lunch", "www.food.com", "Cook it", null)));
     }
 }
