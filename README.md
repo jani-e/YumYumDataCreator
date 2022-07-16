@@ -8,7 +8,7 @@ Graphical Java tool for YumYum JSON data
 ## General purpose
 To learn:
 * Maven
-* JDBC with PostgreSQL
+* JDBC (16.7.2022 switched to SQLLITE from POSTGRESQL/private linux server)
 
 To rehearse:
 * JavaFX
