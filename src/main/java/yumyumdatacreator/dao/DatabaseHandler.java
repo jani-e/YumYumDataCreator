@@ -37,12 +37,13 @@ import yumyumdatacreator.domain.Recipe;
  */
 public class DatabaseHandler {
 
-    private CredentialsLoader cl;
+    //private CredentialsLoader cl;
     private ConnectionManager cm;
 
     public DatabaseHandler() {
-        this.cl = new CredentialsLoader();
-        this.cm = new ConnectionManager(cl.getIp(), cl.getUser(), cl.getPassword());
+        //this.cl = new CredentialsLoader();
+        //this.cm = new ConnectionManager(cl.getIp(), cl.getUser(), cl.getPassword());
+        this.cm = new ConnectionManager();
     }
 
     public void createTables() {

@@ -30,3 +30,4 @@ nb-configuration.xml
 
 ## Other
 credentials.csv
+*.db

@@ -40,18 +40,18 @@ public class TableCreator {
 
     public void createTables() {
         String ingredient_SQL = "CREATE TABLE IF NOT EXISTS ingredient ("
-                + "ingredientid SERIAL PRIMARY KEY, "
+                + "ingredientid INTEGER PRIMARY KEY, "
                 + "name VARCHAR(32) NOT NULL, "
                 + "prefix VARCHAR(3)"
                 + ");";
         
         String type_SQL = "CREATE TABLE IF NOT EXISTS type ("
-                + "typeid SERIAL PRIMARY KEY, "
+                + "typeid INTEGER PRIMARY KEY, "
                 + "mealtype VARCHAR(16) NOT NULL"
                 + ");";
         
         String recipe_SQL = "CREATE TABLE IF NOT EXISTS recipe ("
-                + "recipeid SERIAL PRIMARY KEY, "
+                + "recipeid INTEGER PRIMARY KEY, "
                 + "name VARCHAR(32) NOT NULL, "
                 + "type INTEGER NOT NULL, "
                 + "imageurl VARCHAR(100), "
@@ -62,7 +62,7 @@ public class TableCreator {
         String recipeIngredient_SQL = "CREATE TABLE IF NOT EXISTS recipe_ingredient ("
                 + "recipeid INTEGER NOT NULL, "
                 + "ingredientid INTEGER NOT NULL, "
-                + "quantity DOUBLE PRECISION NOT NULL, "
+                + "quantity DOUBLE NOT NULL, "
                 + "FOREIGN KEY (recipeid) REFERENCES recipe(recipeid), "
                 + "FOREIGN KEY (ingredientid) REFERENCES ingredient(ingredientid)"
                 + ");";

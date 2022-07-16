@@ -37,10 +37,12 @@ public class ConnectionManager {
     private String user;
     private String password;
     
-    public ConnectionManager(String ip, String user, String password) {
-        this.url = "jdbc:postgresql://" + ip + "/yumyum";
-        this.user = user;
-        this.password = password;
+    public ConnectionManager() {
+        this.url = "jdbc:sqlite:yumyum.db";
+        //this.user = user;
+        //this.password = password;
+        this.user = "user";
+        this.password = "password";
     }
 
     public Connection getDatabaseConnection() {
