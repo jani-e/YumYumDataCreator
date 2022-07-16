@@ -90,11 +90,35 @@ public class RecipeHandlerTest {
     
     @Test
     public void recipeCanBeAdded() {
-        assertTrue(this.recipeHandler.addRecipe(new Recipe("NewRecipe", "Dinner", "www.dinner.com", "Cena", null)));
+        assertTrue(this.recipeHandler.addable(new Recipe("NewRecipe", "Dinner", "www.dinner.com", "Cena", null)));
     }
     
     @Test
     public void existingRecipeCantBeAdded() {
-        assertFalse(this.recipeHandler.addRecipe(new Recipe("Soup", "Lunch", "www.food.com", "Cook it", null)));
+        assertFalse(this.recipeHandler.addable(new Recipe("Soup", "Lunch", "www.food.com", "Cook it", null)));
+    }
+    
+    @Test
+    public void recipeIsSaved() {
+        Recipe newRecipe = new Recipe("Taco", "Lunch", "www.tacos.com", "Not a burrito", null);
+        when(this.databaseHandler.saveRecipe(newRecipe)).thenReturn(true);
+        assertTrue(this.recipeHandler.saveRecipe(newRecipe));
+    }
+    
+    @Test
+    public void recipeIsNotSaved() {
+        Recipe duplicate = new Recipe("Soup", "Lunch", "www.food.com", "Cook it", null);
+        when(this.databaseHandler.saveRecipe(duplicate)).thenReturn(false);
+        assertFalse(this.recipeHandler.saveRecipe(duplicate));
+    }
+    
+    @Test
+    public void searchFindsRecipe() {
+        assertEquals("Soup", this.recipeHandler.searchRecipe("Soup").getName());
+    }
+    
+    @Test
+    public void failedSearchReturnsNull() {
+        assertNull(this.recipeHandler.searchRecipe("Not in the recipes"));
     }
 }
