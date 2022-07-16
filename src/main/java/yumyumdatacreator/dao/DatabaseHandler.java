@@ -54,7 +54,7 @@ public class DatabaseHandler {
         }
     }
 
-    public void saveRecipe(Recipe recipe) {
+    public boolean saveRecipe(Recipe recipe) {
         String insert_SQL = "INSERT INTO recipe (name, type, imageurl, instructions) VALUES (?, ?, ?, ?);"; //missing ingredients
         try {
             Connection conn = this.cm.getDatabaseConnection();
@@ -66,8 +66,10 @@ public class DatabaseHandler {
             st.executeUpdate();
             st.close();
             conn.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 
